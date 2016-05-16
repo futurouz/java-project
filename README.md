@@ -1,5 +1,5 @@
 # Income Expense System
-Function
+**Function**
   - Login
   - Register
   - Add Income Expense and Save(Extra Budget)
@@ -7,4 +7,8 @@ Function
   - History
   - Print data (I/O)
   - Show all data
+
+
+**Team --> Ou, Taen, Knack, Gun**
+  
 
