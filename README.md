@@ -7,5 +7,4 @@ Function
   - History
   - Print data (I/O)
   - Show all data
-#Team
-  - OU, TAEN, KNACK, GUN ..  .  HIP HIP HOORAY
+
