@@ -1079,6 +1079,7 @@ public class Start extends javax.swing.JFrame {
             Connection conn = ConnectionDB.getConnection();
             long a = person.getPerId();
             String search = searchBar1.getText();
+ 
             if (search.equals("")) {
                 JOptionPane.showMessageDialog(null, "Can't be empty field", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
@@ -1086,11 +1087,11 @@ public class Start extends javax.swing.JFrame {
                 ResultSet rec = ps.executeQuery();
 
                 if (!rec.next()) {
-                    JOptionPane.showMessageDialog(null, "Data Not Found");
+                    JOptionPane.showMessageDialog(null, "Information not found");
                 } else {
-                    while ((rec != null) && (rec.next())) {
+                    do {
                         inSearchField.setText(inSearchField.getText() + rec.getDate("Days") + "          " + rec.getString("CATALOG") + "                     " + rec.getDouble("AMOUNT") + "\n\n");
-                    }
+                    } while (rec.next());
                 }
                 ps.close();
                 conn.close();
@@ -1118,19 +1119,20 @@ public class Start extends javax.swing.JFrame {
         try {
             Connection conn = ConnectionDB.getConnection();
             long a = person.getPerId();
-            String NAME = searchBar2.getText();
-            if (NAME.equals("")) {
+            String search2 = searchBar2.getText();
+ 
+            if (search2.equals("")) {
                 JOptionPane.showMessageDialog(null, "Can't be empty field", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                PreparedStatement ps = conn.prepareStatement("SELECT * FROM  EXPENSE WHERE PERID = " + a + "  and CATALOG LIKE '%" + NAME + "%' ");
+                PreparedStatement ps = conn.prepareStatement("SELECT * FROM  EXPENSE WHERE PERID = " + a + "  and CATALOG LIKE '%" + search2 + "%' ");
                 ResultSet rec = ps.executeQuery();
 
                 if (!rec.next()) {
-                    JOptionPane.showMessageDialog(null, "Data Not Found");
+                    JOptionPane.showMessageDialog(null, "Information not found");
                 } else {
-                    while ((rec != null) && (rec.next())) {
+                    do {
                         exSearchField.setText(exSearchField.getText() + rec.getDate("Days") + "          " + rec.getString("CATALOG") + "                     " + rec.getDouble("AMOUNT") + "\n\n");
-                    }
+                    } while (rec.next());
                 }
                 ps.close();
                 conn.close();
@@ -1138,7 +1140,6 @@ public class Start extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }//GEN-LAST:event_s2ActionPerformed
 
     private void backbtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtn2ActionPerformed
@@ -1173,21 +1174,24 @@ public class Start extends javax.swing.JFrame {
         try {
             Connection conn = ConnectionDB.getConnection();
             long a = person.getPerId();
-            String NAME = searchBar3.getText();
-            if (NAME.equals("")) {
+            String search3 = searchBar3.getText();
+            
+            if (search3.equals("")) {
                 JOptionPane.showMessageDialog(null, "Can't be empty field", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                PreparedStatement ps = conn.prepareStatement("SELECT * FROM  SAVE WHERE PERID = " + a + "  and CATALOG LIKE '%" + NAME + "%' ");
+                PreparedStatement ps = conn.prepareStatement("SELECT * FROM  SAVE WHERE PERID = " + a + "  and CATALOG LIKE '%" + search3 + "%' ");
                 ResultSet rec = ps.executeQuery();
+
                 if (!rec.next()) {
-                    JOptionPane.showMessageDialog(null, "Data Not Found");
+                    JOptionPane.showMessageDialog(null, "Information not found");
                 } else {
-                    while ((rec != null) && (rec.next())) {
+                    do {
                         saSearchField.setText(saSearchField.getText() + rec.getDate("Days") + "          " + rec.getString("CATALOG") + "                     " + rec.getDouble("AMOUNT") + "\n\n");
-                    }
-                    ps.close();
-                    conn.close();
+                    } while (rec.next());
                 }
+
+                ps.close();
+                conn.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1208,8 +1212,8 @@ public class Start extends javax.swing.JFrame {
 
         try {
             Calendar calendar = Calendar.getInstance();
-            java.util.Date date =  calendar.getTime();
-       
+            java.util.Date date = calendar.getTime();
+
             Connection conn = ConnectionDB.getConnection();
             long a = person.getPerId();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM  PERSONS WHERE PERID = " + a);
@@ -1235,7 +1239,7 @@ public class Start extends javax.swing.JFrame {
                     writer.write(" baht\n\tTotal \t\t\t\t\t ");
                     writer.write(rec.getString("TOTAL"));
                     writer.write(" baht\n\n\n");
-                    writer.write("\t\t\t\t\t" +date + "\n");
+                    writer.write("\t\t\t\t\t" + date + "\n");
                     writer.write("------------------------------------------------------------------------");
                 }
                 writer.close();
@@ -1267,7 +1271,7 @@ public class Start extends javax.swing.JFrame {
                 File file = new File(path);
                 writer = new FileWriter(file, false);  //True = Append to file, false = Overwrite
                 while ((rec != null) && (rec.next())) {
-                  
+
                     writer.write(rec.getString("HISTORY_DATE"));
                     writer.write("\t\t");
                     writer.write(rec.getString("HISTORY_CODE"));
