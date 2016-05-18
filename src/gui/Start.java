@@ -867,6 +867,10 @@ public class Start extends javax.swing.JFrame {
 
         if (tmp.equals("")) {
             JOptionPane.showMessageDialog(null, "Input some amount / Can't be empty field", "Warning ", JOptionPane.WARNING_MESSAGE);
+        } else if (note.equals("")) {
+            JOptionPane.showMessageDialog(null, "Input some note / Can't be empty field", "Warning ", JOptionPane.WARNING_MESSAGE);
+        } else if (Double.parseDouble(tmp) <= 0) {
+            JOptionPane.showMessageDialog(null, " Can't be negative number", "Warning ", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 double amount = Double.parseDouble(tmp);
@@ -909,11 +913,16 @@ public class Start extends javax.swing.JFrame {
 
     private void Save2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Save2ActionPerformed
         Date day = null;
+
         String tmp = amountEx.getText();
         String note = noteEx.getText();
 
         if (tmp.equals("")) {
             JOptionPane.showMessageDialog(null, "Input some amount / Can't be empty field", "Warning ", JOptionPane.WARNING_MESSAGE);
+        } else if(note.equals("")) {
+            JOptionPane.showMessageDialog(null, "Input some note / Can't be empty field", "Warning ", JOptionPane.WARNING_MESSAGE);
+        } else if (Double.parseDouble(tmp) <= 0) {
+            JOptionPane.showMessageDialog(null, "Negative number", "Warning ", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 double amount = Double.parseDouble(amountEx.getText());
@@ -949,6 +958,11 @@ public class Start extends javax.swing.JFrame {
 
         if (tmp.equals("")) {
             JOptionPane.showMessageDialog(null, "Input some amount / Can't be empty field", "Warning ", JOptionPane.WARNING_MESSAGE);
+        } else if (note.equals("")) {
+            JOptionPane.showMessageDialog(null, "Input some note / Can't be empty field", "Warning ", JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Double.parseDouble(tmp) <= 0) {
+            JOptionPane.showMessageDialog(null, "Negative number", "Warning ", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 double amount = Double.parseDouble(amountSave.getText());
@@ -1079,7 +1093,7 @@ public class Start extends javax.swing.JFrame {
             Connection conn = ConnectionDB.getConnection();
             long a = person.getPerId();
             String search = searchBar1.getText();
- 
+
             if (search.equals("")) {
                 JOptionPane.showMessageDialog(null, "Can't be empty field", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
@@ -1120,7 +1134,7 @@ public class Start extends javax.swing.JFrame {
             Connection conn = ConnectionDB.getConnection();
             long a = person.getPerId();
             String search2 = searchBar2.getText();
- 
+
             if (search2.equals("")) {
                 JOptionPane.showMessageDialog(null, "Can't be empty field", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
@@ -1175,7 +1189,7 @@ public class Start extends javax.swing.JFrame {
             Connection conn = ConnectionDB.getConnection();
             long a = person.getPerId();
             String search3 = searchBar3.getText();
-            
+
             if (search3.equals("")) {
                 JOptionPane.showMessageDialog(null, "Can't be empty field", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
